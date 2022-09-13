@@ -6,12 +6,17 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 require("dotenv").config();
 // const fileUpload = require("express-fileupload");
 
+ 
 // Apps middleware
 app.use(cors());
 app.use(express.json());
 // app.use(fileUpload());
 
-// app.use(body)
+// use route and import all router from others file 
+app.use('/api/v1/product',require("./routes/product")); 
+app.use('/api/v1/user',require("./routes/user")); 
+// app.use('/api/v1/',require("")); 
+
 const uri = `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASS}@cluster0.wijwg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {

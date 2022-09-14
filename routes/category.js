@@ -12,7 +12,3 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
-// some category
-// flash sale
-// latest deal
-// category

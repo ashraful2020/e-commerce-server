@@ -19,7 +19,7 @@ app.use('/api/v1/flash-product',require("./routes/flash_product"));
 app.use('/api/v1/latest-deal',require("./routes/latest_deal")); 
 app.use('/api/v1/category',require("./routes/category")); 
 app.use('/api/v1/popular-category',require("./routes/popular_category")); 
-// app.use('/api/v1/',require("")); 
+app.use('/api/v1/search-by-category',require("./routes/search_by_category")); 
 // app.use('/api/v1/',require("")); 
 // app.use('/api/v1/',require("")); 
 
@@ -54,7 +54,7 @@ module.exports.client = {
   flashProductCollection: client.db("amarstore").collection("flashProduct"),
   popularCategoryCollection: client.db("amarstore").collection("popularCategory"),
   latestDealCollection: client.db("amarstore").collection("latestDeal"),
-  // productCollection: client.db("amarstore").collection("product"),
+  searchByCategoryCollection: client.db("amarstore").collection("searchByCategory"),
   // productCollection: client.db("amarstore").collection("product"),
   // productCollection: client.db("amarstore").collection("product"),
 };

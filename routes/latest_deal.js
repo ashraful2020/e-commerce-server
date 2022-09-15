@@ -4,7 +4,8 @@ const root_route = require("../index");
 const users = require("./users");
 // User router
 router.get("/", async (req, res) => { 
-    return res.send("deal");
+    const cursor = await root_route.client.latestDealCollection.find({}).toArray();
+    return res.send(cursor);
 });
 
 module.exports = router;

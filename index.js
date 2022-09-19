@@ -39,6 +39,11 @@ async function run() {
         `<h1 style='color:#99bbf2;font-size:70px; margin-top:20%; text-align:center'> Amar store server side</h1>`
       );
     });
+    app.get("/", async (req, res) => {
+      res.send(
+        `<h1 style='color:#99bbf2;font-size:70px; margin-top:20%; text-align:center'> Amar store server side</h1>`
+      );
+    });
   } finally {
     // await client.close();
   }

@@ -3,9 +3,7 @@ const router = express.Router();
 const root_route = require("../index"); 
 // User router
 router.get("/", async (req, res) => { 
-    console.log('first')
-    const result = await root_route.client.searchByCategoryCollection.find({ }).toArray()
-    console.log(result)
+    const result = await root_route.client.searchByCategoryCollection.find({}).toArray()
     return res.send(result);
 });
  

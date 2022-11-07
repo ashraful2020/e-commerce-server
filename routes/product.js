@@ -1,5 +1,4 @@
 const express = require("express");
-const { ObjectId } = require("mongodb");
 const router = express.Router();
 const root_route = require("../index");
 const sharp = require("sharp");
@@ -8,19 +7,54 @@ router.get("/", async (req, res) => {
   const cursor = await root_route.client.productCollection.find({}).toArray();
   res.send(cursor);
 });
+
+
+router.get("/cart-product", async (req, res) => {
+  try {
+    const cursor = await root_route.client.productCollection
+      .find({})
+      .project({ name: 1, quantity: 1, price: 1, id: 1, img: 1 })
+      .toArray();
+    res.send(cursor);
+  } catch (error) {
+    console.log(error);
+    res.end();
+  }
+});
+
+router.get("/search-product", async (req, res) => {
+  try {
+    const cursor = await root_route.client.productCollection
+      .find({})
+      .project({ name: 1, id: 1, img: 1, _id: 0 })
+      .toArray();
+    res.send(cursor);
+  } catch (error) { 
+    res.end();
+  }
+});
+
 router.get("/show-product", async (req, res) => {
   const cursor = await root_route.client.productCollection
     .find({})
-    .project({ _id: 1, name: 1, img: 1, price: 1,stock:1 })
+    .project({ _id: 1, name: 1, img: 1, price: 1, stock: 1 })
     .toArray();
   res.send(cursor);
 });
+
+//  Get single product 
 router.get("/:id", async (req, res) => {
-  const id = req.params.id;
-  const cursor = await root_route?.client?.productCollection?.findOne({
-    _id: ObjectId(id),
-  });
-  return res.send(cursor);
+  try {
+    const id = req?.params?.id;
+    const filter = {
+      "id": "4bf9798f-63bc-4a83-b0c6-6a3b816fe922",
+    }
+    const query = await root_route?.client?.productCollection?.findOne({ id });
+    return res.send(query);
+
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 router.post("/", async (req, res) => {
@@ -42,6 +76,7 @@ router.post("/", async (req, res) => {
   }
   const result = {
     ...productInfo,
+    isFlash: false,
     images: allImage,
     createdAt: new Date().toDateString(),
   };

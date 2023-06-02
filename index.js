@@ -20,7 +20,7 @@ app.use("/api/v1/category", require("./routes/category"));
 app.use("/api/v1/popular-category", require("./routes/popular_category"));
 app.use("/api/v1/search-by-category", require("./routes/search_by_category"));
 // app.use('/api/v1/',require(""));
-// app.use('/api/v1/',require(""));
+
 const uri = `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASS}@cluster0.wijwg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
